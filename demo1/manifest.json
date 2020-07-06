@@ -1,5 +1,10 @@
 {
     "name": "demo1 application",
-    "short_name": "demo1",
-    "display": "standalone"
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ]
 }
