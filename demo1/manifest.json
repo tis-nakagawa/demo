@@ -1,5 +1,6 @@
 {
     "name": "demo1 application",
+    "display": "standalone",
     "icons": [
         {
             "src": "icon.png",
