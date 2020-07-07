@@ -4,23 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
     <title>demo1</title>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('service_worker.js').then(function (registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function (err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
+    <script src="leaflet.js"></script>
+    <style>
+        #mapid {
+            height: 180px;
         }
+
+        textarea {
+            font-size: 12pt;
+            font-family: monospace;
+        }
+    </style>
+    <script>
+        var watchID = null;
+        function init() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('service_worker.js').then(function (registration) {
+                    log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    log('ServiceWorker registration failed: ', err);
+                });
+            } else {
+                log('serviceWorker IS NOT available');
+            }
+            if ("geolocation" in navigator) {
+                log('geolocation is available');
+                watchID = navigator.geolocation.watchPosition(watchPos);
+            } else {
+                log('geolocation IS NOT available');
+            }
+        }
+        function watchPos(position) {
+            log('(' + position.coords.latitude + ',' + position.coords.longitude + ')');
+        }
+        var logs = [];
+        function df(d) {
+            return '' + d.getFullYear() + '/'
+                + ('0' + (d.getMonth() + 1)).slice(-2) + '/'
+                + ('0' + d.getDate()).slice(-2) + ' '
+                + ('0' + d.getHours()).slice(-2) + ':'
+                + ('0' + d.getMinutes()).slice(-2) + ':'
+                + ('0' + d.getSeconds()).slice(-2);
+        }
+        function log(msg) {
+            logs.push(df(new Date()) + ' ' + msg);
+            while (logs.length > 50) {
+                logs.shift();
+            }
+            let val = '';
+            for (let i = 0; i < logs.length; i++) {
+                val += logs[logs.length - i - 1] + "\n";
+            }
+            document.getElementById('logs').value = val;
+        }
+        window.addEventListener('load', init);
     </script>
 </head>
 
 <body>
     <h1>Demo1</h1>
+    <textarea id='logs' rows='30' cols='80'></textarea><br>
 </body>
 
 </html>
