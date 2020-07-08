@@ -12,9 +12,9 @@
         function init() {
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('service_worker.js').then(function (registration) {
-                    log('ServiceWorker registration successful with scope: ', registration.scope);
+                    log('ServiceWorker registration successful with scope: ' + registration.scope);
                 }, function (err) {
-                    log('ServiceWorker registration failed: ', err);
+                    log('ServiceWorker registration failed: ' + err);
                 });
             } else {
                 log('serviceWorker IS NOT available');

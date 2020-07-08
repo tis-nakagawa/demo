@@ -6,4 +6,8 @@ textarea {
     width: 100%;
     font-size: 12pt;
     font-family: monospace;
+    resize: none;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
 }

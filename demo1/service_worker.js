@@ -1,14 +1,13 @@
 var CACHE_NAME = 'demo1';
 var urlsToCache = [
     './',
-    './index.html',
     './style.css',
 ];
 
-self.addEventListener('install', install);
+self.addEventListener('install', install_);
 
-function install(event) {
-    console.log('install', event);
+function install_(event) {
+    console.log('[Service Worker] install', event);
     event.waitUntil(
         caches.open(CACHE_NAME).then(function (cache) {
             console.log(cache);
@@ -20,18 +19,20 @@ function install(event) {
 self.addEventListener('fetch', fetch_);
 
 function fetch_(event) {
-    console.log('fetch', event, event.request.cache);
-    if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin')
-        return;
-    console.log('event.request', event.request);
+    console.log('[Service Worker] Fetched resource ' + event.request.url);
     event.respondWith(
-        caches.match(event.request)
-            .then(function (response) {
-                console.log('response', response);
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            })
-    );
+        caches.match(event.request).then(function (response) {
+            console.log('response', response);
+            if (response) {
+                return response;
+            }
+            return fetch(event.request);
+        }));
 }
+
+self.addEventListener('activate', activate_);
+
+function activate_(event) {
+    console.log('active', event);
+}
+
