@@ -1,0 +1,9 @@
+body {
+    font-family: monospace;
+}
+
+textarea {
+    width: 100%;
+    font-size: 12pt;
+    font-family: monospace;
+}

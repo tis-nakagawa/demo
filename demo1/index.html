@@ -5,13 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>demo1</title>
-    <link rel="manifest" href="manifest.json">
-    <style>
-        textarea {
-            font-size: 12pt;
-            font-family: monospace;
-        }
-    </style>
+    <link rel='manifest' href='manifest.json'>
+    <link rel='stylesheet' href='style.css'>
     <script>
         var watchID = null;
         function init() {
@@ -30,6 +25,7 @@
             } else {
                 log('geolocation IS NOT available');
             }
+            document.getElementById('cashunregister').addEventListener('click', cashunregister);
         }
         function watchPos(position) {
             log('(' + position.coords.latitude + ',' + position.coords.longitude + ')');
@@ -54,13 +50,23 @@
             }
             document.getElementById('logs').value = val;
         }
+        function cashunregister() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistration()
+                    .then((registration) => {
+                        console.log(registration);
+                        registration.unregister();
+                    });
+            }
+        }
         window.addEventListener('load', init);
     </script>
 </head>
 
 <body>
     <h1>Demo1</h1>
-    <textarea id='logs' rows='30' cols='80'></textarea><br>
+    <button id='cashunregister'>CASH UNREGISTER</button>
+    <textarea id='logs' rows='30'></textarea><br>
 </body>
 
 </html>
