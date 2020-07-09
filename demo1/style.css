@@ -11,3 +11,8 @@ textarea {
     overflow-wrap: normal;
     overflow-x: auto;
 }
+
+#map {
+    width: 500px;
+    height: 500px;
+}

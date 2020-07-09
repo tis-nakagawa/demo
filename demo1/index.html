@@ -7,8 +7,11 @@
     <title>demo1</title>
     <link rel='manifest' href='manifest.json'>
     <link rel='stylesheet' href='style.css'>
+    <link rel='stylesheet' href='leaflet.css'>
+    <script src='leaflet.js'></script>
     <script>
         var watchID = null;
+        var myStorage = null;
         function init() {
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('service_worker.js').then(function (registration) {
@@ -25,10 +28,41 @@
             } else {
                 log('geolocation IS NOT available');
             }
+            if (indexedDB) {
+                log('indexedDB is available');
+            } else {
+                log('indexedDB IS NOT available');
+            }
+            if (localStorage) {
+                log('localStorage is available');
+                myStorage = localStorage;
+            } else {
+                log('localStorage IS NOT available');
+            }
             document.getElementById('cashunregister').addEventListener('click', cashunregister);
+            document.getElementById('getlsdate').addEventListener('click', getLsDate);
+            document.getElementById('setlsdate').addEventListener('click', setLsDate);
+            setMap();
+            document.getElementById('infomap').addEventListener('click', infoMap);
         }
+        var pin = null;
         function watchPos(position) {
             log('(' + position.coords.latitude + ',' + position.coords.longitude + ')');
+            if (map) {
+                let pos = [position.coords.latitude, position.coords.longitude];
+                map.setView(pos);
+                if (pin) {
+                    pin.setLatLng(pos);
+                } else {
+                    var myIcon = L.icon({
+                        iconUrl: 'sicon.png',
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 16],
+                        popupAnchor: [0, 0]
+                    });
+                    pin = L.marker(pos, { icon: myIcon, draggable: true }).addTo(map);
+                }
+            }
         }
         var logs = [];
         function df(d) {
@@ -40,6 +74,7 @@
                 + ('0' + d.getSeconds()).slice(-2);
         }
         function log(msg) {
+            console.log(msg);
             logs.push(df(new Date()) + ' ' + msg);
             while (logs.length > 50) {
                 logs.shift();
@@ -59,14 +94,52 @@
                     });
             }
         }
+        function setLsDate() {
+            if (myStorage) {
+                myStorage.setItem('date', 'Date : ' + df(new Date()));
+            }
+        }
+        function getLsDate() {
+            if (myStorage) {
+                let d = myStorage.getItem('date');
+                log(d);
+            }
+        }
+        const INIT_POS = [35.689986792235985, 139.692417383194]; // 都庁
+        var map = null;
+        function setMap() {
+            map = L.map('map');
+            var tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                maxZoom: 19
+            });
+            tileLayer.addTo(map.setView(INIT_POS, 14));
+
+            var myIcon = L.icon({
+                iconUrl: 'sicon.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16],
+                popupAnchor: [0, 0]
+            });
+            L.marker(INIT_POS).addTo(map);
+            console.log(map.getCenter());
+        }
+        function infoMap() {
+            log(map);
+        }
         window.addEventListener('load', init);
     </script>
 </head>
 
 <body>
     <h1>Demo1</h1>
-    <button id='cashunregister'>CASH UNREGISTER</button>
-    <textarea id='logs' rows='30'></textarea><br>
+    <button id='cashunregister'>CASH UNREGISTER</button><br>
+    <button id='setlsdate'>SET localStorage</button><br>
+    <button id='getlsdate'>GET localStorage</button><br>
+    <textarea id='logs' rows='10'></textarea><br>
+    <textarea id='wlogs' rows='10'></textarea><br>
+    <button id='infomap'>INFO</button><br>
+    <div id='map'></div>
 </body>
 
 </html>
