@@ -9,6 +9,7 @@
     <link rel='stylesheet' href='style.css'>
     <link rel='stylesheet' href='leaflet.css'>
     <script src='leaflet.js'></script>
+    <script src='MovingMarker.js'></script>
     <script>
         var watchID = null;
         var myStorage = null;
@@ -52,7 +53,8 @@
                 let pos = [position.coords.latitude, position.coords.longitude];
                 map.setView(pos);
                 if (pin) {
-                    pin.setLatLng(pos);
+                    // pin.setLatLng(pos);
+                    pin.moveTo(pos, 1000);
                 } else {
                     var myIcon = L.icon({
                         iconUrl: 'sicon.png',
@@ -60,7 +62,8 @@
                         iconAnchor: [16, 16],
                         popupAnchor: [0, 0]
                     });
-                    pin = L.marker(pos, { icon: myIcon, draggable: true }).addTo(map);
+                    // pin = L.marker(pos, { icon: myIcon, draggable: true }).addTo(map);
+                    pin = L.Marker.movingMarker([pos], [], { icon: myIcon, draggable: true }).addTo(map);
                 }
             }
         }
