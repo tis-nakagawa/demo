@@ -1,0 +1,162 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+}
+
+body {
+    position: relative;
+    width: 100vw;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+#cs {
+    width: 100%;
+}
+
+header {
+    height: 50px;
+}
+
+header div {
+    font-size: 20pt;
+    height: 50px;
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+#menu {
+    position: fixed;
+    top: 0px;
+    right: -250px;
+    height: 100vh;
+    z-index: 100;
+}
+
+.hmi {
+    position: absolute;
+    transition: 1s transform;
+    transform: translateX(0px);
+    width: 35px;
+    height: 35px;
+    left: -50px;
+    top: 7px;
+}
+
+.hmi::before {
+    position: absolute;
+    content: '';
+    width: 25px;
+    height: 5px;
+    background-color: transparent;
+    border-bottom: 5px solid gray;
+    bottom: 5px;
+    left: 5px;
+}
+
+.hmi::after {
+    position: absolute;
+    content: '';
+    width: 25px;
+    height: 5px;
+    background-color: transparent;
+    border-top: 5px solid gray;
+    border-bottom: 5px solid gray;
+    top: 5px;
+    left: 5px;
+}
+
+#tc {
+    display: none;
+}
+
+#links {
+    transition: 1s all;
+    transform: translateX(0px);
+    background-color: lightgray;
+    top: 0;
+    right: -100vw;
+    width: 250px;
+    height: 100%;
+    opacity: 0;
+}
+
+#menu #tc:checked~#links {
+    transition: 1s all;
+    transform: translateX(-250px);
+    opacity: 0.8;
+}
+
+#menu #tc:checked~.hmi {
+    transition: 1s transform;
+    transform: translateX(-250px);
+}
+
+#rc1, #rc2, #rc3, #rc4 {
+    display: none;
+}
+
+#c1 {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: blue;
+    display: none;
+}
+
+#cs #rc1:checked~#c1 {
+    display: block;
+}
+
+#c2 {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: red;
+    display: none;
+}
+
+#cs #rc2:checked~#c2 {
+    display: block;
+}
+
+#c3 {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: green;
+    display: none;
+}
+
+#cs #rc3:checked~#c3 {
+    display: block;
+}
+
+#c4 {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: yellow;
+    display: none;
+}
+
+#cs #rc4:checked~#c4 {
+    display: block;
+}
+
+.link {
+    width: 200px;
+    height: 40px;
+    padding-left: 1em;
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.ct {
+    margin: 20px;
+}
