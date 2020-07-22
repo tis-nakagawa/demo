@@ -3,6 +3,10 @@
     font-size: 24pt;
 }
 
+table {
+    width: 100%;
+}
+
 body {
     max-width: 750px;
     margin-left: auto;
@@ -30,4 +34,8 @@ td.c {
 #k {
     color: orange;
     font-weight: bold;
+}
+
+button {
+    border-radius: 5px;
 }
