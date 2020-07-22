@@ -11,19 +11,22 @@ function init() {
 function chgX() {
     let x = document.getElementById('x').value;
     if (x) {
+        let ya = Number((BigInt(g) ** BigInt(x)) % BigInt(p));
         document.getElementById('yax').innerHTML = x;
         document.getElementById('ybx').innerHTML = x;
+        document.getElementById('ya').innerHTML = ya;
+        document.getElementById('k').innerHTML = '';
     } else {
         document.getElementById('yax').innerHTML = 'X';
         document.getElementById('yx').innerHTML = 'X';
+        document.getElementById('ya').innerHTML = '';
+        document.getElementById('k').innerHTML = '';
     }
 }
 
 function genX() {
     let x = Math.floor(Math.random() * Math.floor(p));
-    let ya = Number((BigInt(g) ** BigInt(x)) % BigInt(p));
     document.getElementById('x').value = x;
-    document.getElementById('ya').innerHTML = ya;
     chgX();
 }
 
