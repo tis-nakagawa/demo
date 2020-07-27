@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+    font-size: 12pt;
+}
+
+body {
+    position: relative;
+    width: 100vw;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    position: fixed;
+    width: 100vw;
+    max-width: 750px;
+    background-color: rgb(255, 255, 255, 0.1);
+    height: 75px;
+    top: 0;
+}
+
+#tags {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+#tags tr td {
+    border: 1px solid black;
+    border-radius: 5px 5px 0px 0px;
+    padding: 5px;
+    text-align: center;
+    width: 33%;
+    user-select: none;
+}
+
+#ht {
+    font-size: 20pt;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#main {
+    margin-top: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#gps {
+    display: none;
+}
+
+#qr {
+    display: none;
+}
+
+#qrr {
+    display: none;
+}
+
+#gps_page {
+    display: none;
+}
+
+#qr_page {
+    display: none;
+}
+
+#qrr_page {
+    display: none;
+}
+
+#gps:checked~#main #gps_page {
+    display: block;
+}
+
+#qr:checked~#main #qr_page {
+    display: block;
+}
+
+#qrr:checked~#main #qrr_page {
+    display: block;
+}
+
+#gps:checked~header #tags #gps_tag {
+    border-bottom: none;
+}
+
+#qr:checked~header #tags #qr_tag {
+    border-bottom: none;
+}
+
+#qrr:checked~header #tags #qrr_tag {
+    border-bottom: none;
+}

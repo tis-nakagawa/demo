@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEMO</title>
+    <link rel="icon" type="image/png" href="images/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png">
+    <link rel='manifest' href='manifest.json'>
+    <link rel='stylesheet' href='style.css'>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <input id="gps" type="radio" name="tag" checked>
+    <input id="qr" type="radio" name="tag">
+    <input id="qrr" type="radio" name="tag">
+    <header>
+        <div id="ht">Demo</div>
+        <table id="tags">
+            <tr>
+                <td id="gps_tag">
+                    <label for="gps">
+                        <div>GPS</div>
+                    </label>
+                </td>
+                <td id="qr_tag">
+                    <label for="qr">
+                        <div>QR Code</div>
+                    </label>
+                </td>
+                <td id="qrr_tag">
+                    <label for="qrr">
+                        <div>QR Reader</div>
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </header>
+    <div id="main">
+        <div id="gps_page">
+            <div>GPS</div>
+        </div>
+        <div id="qr_page">
+            <div>QR Code</div>
+        </div>
+        <div id="qrr_page">
+            <div>QR Code Reader</div>
+        </div>
+    </div>
+</body>
+
+</html>
