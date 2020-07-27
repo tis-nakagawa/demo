@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEMO</title>
+    <title>DEMO | Title</title>
     <link rel="icon" type="image/png" href="images/icons/icon-152x152.png">
     <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png">
     <link rel='manifest' href='manifest.json'>
     <link rel='stylesheet' href='style.css'>
+    <link rel='stylesheet' href='lib/leaflet.css'>
+    <script src="lib/leaflet.js"></script>
+    <script src="lib/MovingMarker.js"></script>
+    <script src="lib/qrcode.min.js"></script>
     <script src="script.js"></script>
 </head>
 
 <body>
-    <input id="gps" type="radio" name="tag" checked>
-    <input id="qr" type="radio" name="tag">
+    <input id="gps" type="radio" name="tag">
+    <input id="qr" type="radio" name="tag" checked>
     <input id="qrr" type="radio" name="tag">
     <header>
         <div id="ht">Demo</div>
@@ -40,10 +44,43 @@
     </header>
     <div id="main">
         <div id="gps_page">
-            <div>GPS</div>
+            <div id='map'></div>
         </div>
         <div id="qr_page">
-            <div>QR Code</div>
+            <table id="qr_info">
+                <tr>
+                    <td colspan="3"><input id="qrtext" type="text" value=""></td>
+                </tr>
+                <tr>
+                    <td class="qr_info">
+                        <span>Level:</span>
+                        <select id="qrlevel">
+                            <option value="1">L (Low)</option>
+                            <option value="0" selected>M (Medium)</option>
+                            <option value="2">H (High)</option>
+                            <option value="3">Q (Quartile)</option>
+                        </select>
+                    </td>
+                    <td class="qr_info">
+                        <span>Mode:</span>
+                        <select id="qrmode">
+                            <option value="AUTO">AUTO</option>
+                            <option value="NUMBER">NUMBER</option>
+                            <option value="ALPHA_NUM">ALPHA_NUM</option>
+                            <option value="8bit">8bit</option>
+                        </select>
+                    </td>
+                    <td class="qr_info">
+                        <button id="qrcreate">CREATE</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <canvas id="qrcode"></canvas>
+                    </td>
+                </tr>
+            </table>
+            <div id="qrinfo"> </div>
         </div>
         <div id="qrr_page">
             <div>QR Code Reader</div>

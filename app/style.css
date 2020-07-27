@@ -45,9 +45,9 @@ header {
 }
 
 #main {
-    margin-top: 80px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-top: 75px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #gps {
@@ -96,4 +96,53 @@ header {
 
 #qrr:checked~header #tags #qrr_tag {
     border-bottom: none;
+}
+
+.pt {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+#map {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 500px;
+}
+
+#qr_info {
+    width: 100%;
+}
+
+#qr_info td {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#qr_info input {
+    padding: 5px;
+}
+
+#qr_info select {
+    padding: 5px;
+    width: 60%;
+}
+
+td.qr_info {
+    width: 33%;
+}
+
+#qrtext {
+    width: 100%;
+}
+
+#qrcreate {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#qrinfo {
+    padding-left: 20px;
+    word-break: break-all;
 }
