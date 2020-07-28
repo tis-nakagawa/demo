@@ -29,8 +29,6 @@ header {
 }
 
 #tags tr td {
-    border: 1px solid black;
-    border-radius: 5px 5px 0px 0px;
     padding: 5px;
     text-align: center;
     width: 33%;
@@ -87,15 +85,21 @@ header {
 }
 
 #gps:checked~header #tags #gps_tag {
-    border-bottom: none;
+    color: blue;
+    font-weight: bold;
+    border-bottom: 2pt solid blue;
 }
 
 #qr:checked~header #tags #qr_tag {
-    border-bottom: none;
+    color: blue;
+    font-weight: bold;
+    border-bottom: 2pt solid blue;
 }
 
 #qrr:checked~header #tags #qrr_tag {
-    border-bottom: none;
+    color: blue;
+    font-weight: bold;
+    border-bottom: 2pt solid blue;
 }
 
 .pt {
@@ -144,5 +148,19 @@ td.qr_info {
 
 #qrinfo {
     padding-left: 20px;
+    word-break: break-all;
+}
+
+#qrr_cam {
+    width: 100%;
+}
+
+#qrr_cam tr td {
+    text-align: center;
+}
+
+#qrdata {
+    padding-top: 10px;
+    padding-left: 30px;
     word-break: break-all;
 }

@@ -13,12 +13,13 @@
     <script src="lib/leaflet.js"></script>
     <script src="lib/MovingMarker.js"></script>
     <script src="lib/qrcode.min.js"></script>
+    <script src="lib/jsQR.js"></script>
     <script src="script.js"></script>
 </head>
 
 <body>
-    <input id="gps" type="radio" name="tag">
-    <input id="qr" type="radio" name="tag" checked>
+    <input id="gps" type="radio" name="tag" checked>
+    <input id="qr" type="radio" name="tag">
     <input id="qrr" type="radio" name="tag">
     <header>
         <div id="ht">Demo</div>
@@ -83,7 +84,14 @@
             <div id="qrinfo"> </div>
         </div>
         <div id="qrr_page">
-            <div>QR Code Reader</div>
+            <table id="qrr_cam">
+                <tr>
+                    <td>
+                        <canvas id="cam"></canvas>
+                    </td>
+                </tr>
+            </table>
+            <div id="qrdata"> </div>
         </div>
     </div>
 </body>

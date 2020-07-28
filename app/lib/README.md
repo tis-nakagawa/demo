@@ -54,3 +54,16 @@ lib
 ```
 
 
+## jsQR
+
+jsQRは、QRコードを読み取るライブラリです。<br>
+以下のサイトから取得しています。
+
+- cozmo/jsQR: A pure javascript QR code reading library. This library takes in raw images and will locate, extract and parse any QR code found within.<br>https://github.com/cozmo/jsQR
+
+以下のファイルは、jsQRのライセンスに依存します。
+
+```
+lib
+│  jsQR.js
+```
