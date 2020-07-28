@@ -225,10 +225,6 @@ function stopQRReader() {
     if (cam && cam.srcObject) {
         cam.srcObject.getTracks().forEach(function (track) { track.stop() });
     }
-    let c = document.getElementById("cam");
-    c.width = 0;
-    c.height = 0;
-    document.getElementById("qrdata").innerHTML = "";
 }
 
 function handleSuccess(stream) {
@@ -269,7 +265,7 @@ function setCam() {
                     + "Data : " + h(code.data) + "<br>"
                     + "";
                 cam.pause();
-                setTimeout(play, 2000);
+                setTimeout(restart, 2000);
                 requestID = null;
             } else {
                 requestID = requestAnimationFrame(setCam);
@@ -289,7 +285,7 @@ function h(str) {
         .replace(/>/g, "&gt;");
 }
 
-function play() {
+function restart() {
     stopQRReader();
     startQRReader();
 }
