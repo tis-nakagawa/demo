@@ -202,7 +202,6 @@ function createQR() {
 
 var cam = null;
 var requestID = null;
-var scan = true;
 
 function startQRReader() {
     console.log("start QR Reader");
@@ -246,7 +245,7 @@ function handleSuccess(stream) {
 
 function setCam() {
     try {
-        if (scan && cam.readyState == HTMLMediaElement.HAVE_ENOUGH_DATA) {
+        if (cam.readyState == HTMLMediaElement.HAVE_ENOUGH_DATA) {
             let c = document.getElementById("cam");
             c.width = cam.videoWidth / 2;
             c.height = cam.videoHeight / 2;
@@ -270,11 +269,13 @@ function setCam() {
                     + "Data : " + h(code.data) + "<br>"
                     + "";
                 cam.pause();
-                scan = false;
                 setTimeout(play, 2000);
+            } else {
+                requestID = requestAnimationFrame(setCam);
             }
+        } else {
+            requestID = requestAnimationFrame(setCam);
         }
-        requestID = requestAnimationFrame(setCam);
     } catch (e) {
         alert(e.message);
     }
@@ -289,7 +290,7 @@ function h(str) {
 
 function play() {
     cam.play();
-    setTimeout(function () { scan = true }, 1500);
+    setTimeout(function () { requestID = requestAnimationFrame(setCam) }, 1500);
 }
 
 
