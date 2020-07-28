@@ -270,6 +270,7 @@ function setCam() {
                     + "";
                 cam.pause();
                 setTimeout(play, 2000);
+                requestID = null;
             } else {
                 requestID = requestAnimationFrame(setCam);
             }
@@ -289,11 +290,8 @@ function h(str) {
 }
 
 function play() {
-    if (cam.paused) {
-        cam.setAttribute("playsinline", true);
-        cam.play();
-        setTimeout(function () { requestID = requestAnimationFrame(setCam) }, 1500);
-    }
+    stopQRReader();
+    startQRReader();
 }
 
 
