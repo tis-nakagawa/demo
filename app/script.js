@@ -289,8 +289,11 @@ function h(str) {
 }
 
 function play() {
-    cam.play();
-    setTimeout(function () { requestID = requestAnimationFrame(setCam) }, 1500);
+    if (cam.paused) {
+        cam.setAttribute("playsinline", true);
+        cam.play();
+        setTimeout(function () { requestID = requestAnimationFrame(setCam) }, 1500);
+    }
 }
 
 
