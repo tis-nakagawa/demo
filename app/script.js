@@ -245,37 +245,41 @@ function handleSuccess(stream) {
 }
 
 function setCam() {
-    if (!cam.paused && cam.readyState == HTMLMediaElement.HAVE_ENOUGH_DATA) {
-        let c = document.getElementById("cam");
-        c.width = cam.videoWidth / 2;
-        c.height = cam.videoHeight / 2;
-        let ctx = c.getContext("2d");
-        ctx.drawImage(cam, 0, 0, c.width, c.height);
-        var img = ctx.getImageData(0, 0, c.width, c.height);
-        var code = jsQR(img.data, img.width, img.height, { inversionAttempts: "dontInvert", });
-        if (code && code.data) {
-            if (scan) {
-                let pos = [code.location.topLeftCorner, code.location.topRightCorner
-                    , code.location.bottomRightCorner, code.location.bottomLeftCorner];
-                for (let i = 0; i < pos.length; i++) {
-                    ctx.beginPath();
-                    ctx.moveTo(pos[i].x, pos[i].y);
-                    ctx.lineTo(pos[(i + 1) % pos.length].x, pos[(i + 1) % pos.length].y);
-                    ctx.lineWidth = 4;
-                    ctx.strokeStyle = "#0000ff";
-                    ctx.stroke();
+    try {
+        if (!cam.paused && cam.readyState == HTMLMediaElement.HAVE_ENOUGH_DATA) {
+            let c = document.getElementById("cam");
+            c.width = cam.videoWidth / 2;
+            c.height = cam.videoHeight / 2;
+            let ctx = c.getContext("2d");
+            ctx.drawImage(cam, 0, 0, c.width, c.height);
+            var img = ctx.getImageData(0, 0, c.width, c.height);
+            var code = jsQR(img.data, img.width, img.height, { inversionAttempts: "dontInvert", });
+            if (code && code.data) {
+                if (scan) {
+                    let pos = [code.location.topLeftCorner, code.location.topRightCorner
+                        , code.location.bottomRightCorner, code.location.bottomLeftCorner];
+                    for (let i = 0; i < pos.length; i++) {
+                        ctx.beginPath();
+                        ctx.moveTo(pos[i].x, pos[i].y);
+                        ctx.lineTo(pos[(i + 1) % pos.length].x, pos[(i + 1) % pos.length].y);
+                        ctx.lineWidth = 4;
+                        ctx.strokeStyle = "#0000ff";
+                        ctx.stroke();
+                    }
+                    document.getElementById("qrdata").innerHTML = ""
+                        + "Date : " + (new Date()) + "<br>"
+                        + "Data : " + h(code.data) + "<br>"
+                        + "";
+                    cam.pause();
+                    scan = false;
+                    setTimeout(play, 3000);
                 }
-                document.getElementById("qrdata").innerHTML = ""
-                    + "Date : " + (new Date()) + "<br>"
-                    + "Data : " + h(code.data) + "<br>"
-                    + "";
-                cam.pause();
-                scan = false;
-                setTimeout(play, 3000);
             }
         }
+        requestID = requestAnimationFrame(setCam);
+    } catch (e) {
+        alert(e.message);
     }
-    requestID = requestAnimationFrame(setCam);
 }
 
 function h(str) {
