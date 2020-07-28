@@ -5,6 +5,7 @@
 
 table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 body {
@@ -20,6 +21,11 @@ input {
 td {
     padding: 5px;
     white-space: nowrap;
+    height: 1.5em;
+}
+
+tr {
+    border-bottom: 1px dashed lightgrey;
 }
 
 td.c {
