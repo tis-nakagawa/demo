@@ -1,6 +1,6 @@
 * {
     font-family: monospace;
-    font-size: 24pt;
+    font-size: 14pt;
 }
 
 table {
@@ -28,8 +28,20 @@ tr {
     border-bottom: 1px dashed lightgrey;
 }
 
+h1 {
+    font-size: 18pt;
+    padding-left: 20px;
+}
+
 td.c {
     text-align: center;
+    padding-left: 20px;
+    width: 30px;
+}
+
+td.e {
+    text-align: center;
+    width: 30px;
 }
 
 #ya {

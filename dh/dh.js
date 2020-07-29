@@ -11,7 +11,8 @@ function init() {
 function chgX() {
     let x = document.getElementById('x').value;
     if (x) {
-        let ya = Number((BigInt(g) ** BigInt(x)) % BigInt(p));
+        // let ya = Number((BigInt(g) ** BigInt(x)) % BigInt(p));
+        let ya = modpow(g, x, p);
         document.getElementById('yax').innerHTML = x;
         document.getElementById('ybx').innerHTML = x;
         document.getElementById('ya').innerHTML = ya;
@@ -34,11 +35,20 @@ function calK() {
     let x = document.getElementById('x').value;
     let yb = document.getElementById('yb').value;
     if (x && yb) {
-        let k = Number((BigInt(yb) ** BigInt(x)) % BigInt(p));
+        // let k = Number((BigInt(yb) ** BigInt(x)) % BigInt(p));
+        let k = modpow(yb, x, p);
         document.getElementById('k').innerHTML = k;
     } else {
         document.getElementById('k').innerHTML = '';
     }
+}
+
+function modpow(v, e, m) {
+    let r = 1;
+    for (let i = 0; i < e; i++) {
+        r = (r * v) % m;
+    }
+    return r;
 }
 
 window.addEventListener('load', init);
