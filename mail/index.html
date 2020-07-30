@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メール</title>
+    <link rel="stylesheet" href="./lib/style.css">
+    <script src="./lib/script.js"></script>
+</head>
+
+<body>
+    <input id="mtag" type="radio" name="tags" checked>
+    <input id="ttag" type="radio" name="tags">
+    <input id="stag" type="radio" name="tags">
+    <header>
+        <table>
+            <tr>
+                <td>
+                    <label for="mtag">
+                        <div id="mhead">Mail</div>
+                    </label>
+                </td>
+                <td>
+                    <label for="ttag">
+                        <div id="thead">Template</div>
+                    </label>
+                </td>
+                <td>
+                    <label for="stag">
+                        <div id="shead">Setting</div>
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </header>
+    <div id="mail">
+        <table>
+            <tr>
+                <td class="min top" rowspan="4">
+                    <div id="send">送信</div>
+                </td>
+                <td class="min">
+                    <div>宛先</div>
+                </td>
+                <td><input id="to" type="text" value=""></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>CC&nbsp;</div>
+                </td>
+                <td><input id="cc" type="text" value=""></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>BCC</div>
+                </td>
+                <td><input id="bcc" type="text" value=""></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>件名</div>
+                </td>
+                <td><input id="subject" type="text" value=""></td>
+            </tr>
+        </table>
+        <textarea id="body"></textarea>
+    </div>
+    <div id="templ">
+        <h1>TEMPLATE</h1>
+    </div>
+    <div id="set">
+        <h1>SETTING</h1>
+    </div>
+</body>
+
+</html>

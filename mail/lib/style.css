@@ -1,0 +1,159 @@
+:root {
+    --border-color: rgb(200, 198, 196);
+    --active-border-color: rgb(0, 120, 212);
+    --active-bg-color: rgb(239, 246, 252)
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+    font-size: 12pt;
+    color: black;
+}
+
+body {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#mtag, #ttag, #stag {
+    display: none;
+}
+
+/* header */
+
+header table {
+    width: 100%;
+}
+
+header table tr td {
+    width: 33%;
+    text-align: center;
+}
+
+header table tr td div {
+    font-size: 14pt;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+#mtag:checked~header #mhead {
+    font-weight: bold;
+    color: var(--active-border-color);
+    border-bottom: 2px solid var(--active-border-color);
+}
+
+#ttag:checked~header #thead {
+    font-weight: bold;
+    color: var(--active-border-color);
+    border-bottom: 2px solid var(--active-border-color);
+}
+
+#stag:checked~header #shead {
+    font-weight: bold;
+    color: var(--active-border-color);
+    border-bottom: 2px solid var(--active-border-color);
+}
+
+/* mail */
+
+#mail {
+    display: none;
+    padding: 5px;
+}
+
+#mtag:checked~#mail {
+    display: block;
+}
+
+#mail table {
+    width: 100%;
+}
+
+#mail table td {
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: top;
+}
+
+#mail table td div {
+    user-select: none;
+}
+
+td.min {
+    width: 1%;
+    white-space: nowrap;
+}
+
+td.top {
+    vertical-align: top;
+}
+
+#send {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: bottom;
+    height: 70px;
+    cursor: pointer;
+}
+
+#send:hover {
+    background-color: var(--active-bg-color);
+    border: 1px solid var(--active-border-color);
+}
+
+#to, #cc, #bcc, #subject {
+    width: 96%;
+    padding-bottom: 5px;
+    font-size: 10pt;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#to:focus, #cc:focus, #bcc:focus, #subject:focus {
+    border-bottom: 1px solid var(--active-border-color);
+}
+
+#body {
+    width: 96%;
+    height: 15.5em;
+    padding: 5px;
+    outline: none;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+/* template */
+
+#templ {
+    display: none;
+}
+
+#ttag:checked~#templ {
+    display: block;
+}
+
+/* setting */
+
+#set {
+    display: none;
+}
+
+#stag:checked~#set {
+    display: block;
+}
