@@ -113,6 +113,7 @@ td.top {
     width: 32px;
     height: 32px;
     padding-bottom: 10px;
+    user-select: none;
 }
 
 #send:hover {
@@ -161,6 +162,7 @@ td.top {
     padding: 5px;
     border: 1px solid transparent;
     cursor: pointer;
+    user-select: none;
 }
 
 #save:hover {
