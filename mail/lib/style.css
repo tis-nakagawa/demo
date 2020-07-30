@@ -37,6 +37,8 @@ header table tr td div {
     font-size: 14pt;
     padding-top: 10px;
     padding-bottom: 5px;
+    user-select: none;
+    cursor: pointer;
 }
 
 #mtag:checked~header #mhead {
@@ -102,8 +104,15 @@ td.top {
     display: table-cell;
     text-align: center;
     vertical-align: bottom;
+    width: 50px;
     height: 70px;
     cursor: pointer;
+}
+
+#send img {
+    width: 32px;
+    height: 32px;
+    padding-bottom: 10px;
 }
 
 #send:hover {
@@ -135,6 +144,28 @@ td.top {
     margin-left: auto;
     margin-right: auto;
     border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.rline {
+    width: 100%;
+}
+
+.rline td {
+    text-align: right;
+}
+
+#save {
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+#save:hover {
+    background-color: var(--active-bg-color);
+    border: 1px solid var(--active-border-color);
     border-radius: 5px;
 }
 
