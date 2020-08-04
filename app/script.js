@@ -249,7 +249,7 @@ function setCam() {
             ctx.drawImage(cam, 0, 0, c.width, c.height);
             var img = ctx.getImageData(0, 0, c.width, c.height);
             var code = jsQR(img.data, img.width, img.height, { inversionAttempts: "dontInvert", });
-            if (code && code.data) {
+            if (code) {
                 let pos = [code.location.topLeftCorner, code.location.topRightCorner
                     , code.location.bottomRightCorner, code.location.bottomLeftCorner];
                 for (let i = 0; i < pos.length; i++) {
@@ -261,8 +261,9 @@ function setCam() {
                     ctx.stroke();
                 }
                 document.getElementById("qrdata").innerHTML = ""
-                    + "Date : " + (new Date()) + "<br>"
-                    + "Data : " + h(code.data) + "<br>"
+                    + "Date&nbsp;: " + (new Date()) + "<br>"
+                    + "Bin&nbsp;&nbsp;: " + hex(code.binaryData) + "<br>"
+                    + "Data&nbsp;: " + h(code.data) + "<br>"
                     + "";
                 cam.pause();
                 setTimeout(restart, 2000);
@@ -283,6 +284,21 @@ function h(str) {
         .replace(/"/g, "&quot;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
+}
+
+function hex(bs) {
+    let h = "";
+    for (let i = 0; i < bs.length; i++) {
+        if (i != 0) {
+            if (i % 16 == 0) {
+                h += "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"
+            } else {
+                h += " ";
+            }
+        }
+        h += ("0" + bs[i].toString(16)).slice(-2).toUpperCase();
+    }
+    return h;
 }
 
 function restart() {
