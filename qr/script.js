@@ -56,7 +56,9 @@ function createBytesQR(data) {
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.L
     });
+    // バイナリデータ作成
     let newData = new QRBytes(data);
+    // 再描写
     qrcode._oQRCode.dataList[0] = newData;
     qrcode._oQRCode.dataCache = null;
     qrcode._oQRCode.make();
