@@ -175,13 +175,27 @@ function createQR() {
                     }
                 }
             }
-            info.innerHTML = ""
-                + "Size&nbsp;&nbsp; : (" + c.width + "," + c.height + ")<br>"
-                + "Number : " + qr.typeNumber + "<br>"
-                + "Level&nbsp; : " + LEVELS[correction] + "<br>"
-                + "Mode&nbsp;&nbsp; : " + inputMode + "<br>"
-                + "Text&nbsp;&nbsp; : " + text + "<br>"
-                + "";
+            info.innerHTML = "";
+            let rows = [
+                ["Size", "(" + c.width + "," + c.height + ")"],
+                ["Number", "" + qr.typeNumber],
+                ["Level", LEVELS[correction]],
+                ["Mode", inputMode],
+                ["Text", h(text)],
+            ];
+            let table = document.createElement("table");
+            for (let i = 0; i < rows.length; i++) {
+                let row = table.insertRow(-1);
+                let c0 = row.insertCell(-1);
+                c0.className = "min";
+                c0.innerHTML = rows[i][0];
+                let c1 = row.insertCell(-1);
+                c1.innerHTML = "&nbsp;:&nbsp;";
+                c1.className = "min";
+                let c2 = row.insertCell(-1);
+                c2.innerHTML = rows[i][1];
+            }
+            info.appendChild(table);
             break;
         } catch (e) {
             if (i + 1 != modes.length) {
@@ -189,11 +203,26 @@ function createQR() {
             }
             c.width = 0;
             c.height = 0;
-            info.innerHTML = "Error&nbsp; : " + e.message + "<br>"
-                + "Level&nbsp; : " + LEVELS[correction] + "<br>"
-                + "Mode&nbsp;&nbsp; : " + inputMode + "<br>"
-                + "Text&nbsp;&nbsp; : " + text + "<br>"
-                + "";
+            info.innerHTML = "";
+            let rows = [
+                ["Error", h(e.message)],
+                ["Level", LEVELS[correction]],
+                ["Mode", inputMode],
+                ["Text", h(text)],
+            ];
+            let table = document.createElement("table");
+            for (let i = 0; i < rows.length; i++) {
+                let row = table.insertRow(-1);
+                let c0 = row.insertCell(-1);
+                c0.className = "min";
+                c0.innerHTML = rows[i][0];
+                let c1 = row.insertCell(-1);
+                c1.innerHTML = "&nbsp;:&nbsp;";
+                c1.className = "min";
+                let c2 = row.insertCell(-1);
+                c2.innerHTML = rows[i][1];
+            }
+            info.appendChild(table);
         }
     }
 }
@@ -260,11 +289,25 @@ function setCam() {
                     ctx.strokeStyle = "#0000ff";
                     ctx.stroke();
                 }
-                document.getElementById("qrdata").innerHTML = ""
-                    + "Date&nbsp;: " + (new Date()) + "<br>"
-                    + "Bin&nbsp;&nbsp;: " + hex(code.binaryData) + "<br>"
-                    + "Data&nbsp;: " + h(code.data) + "<br>"
-                    + "";
+                document.getElementById("qrdata").innerHTML = "";
+                let rows = [
+                    ["Date", df(new Date())],
+                    ["Bin", hex(code.binaryData)],
+                    ["Data", h(code.data)],
+                ];
+                let table = document.createElement("table");
+                for (let i = 0; i < rows.length; i++) {
+                    let row = table.insertRow(-1);
+                    let c0 = row.insertCell(-1);
+                    c0.className = "min";
+                    c0.innerHTML = rows[i][0];
+                    let c1 = row.insertCell(-1);
+                    c1.innerHTML = "&nbsp;:&nbsp;";
+                    c1.className = "min";
+                    let c2 = row.insertCell(-1);
+                    c2.innerHTML = rows[i][1];
+                }
+                document.getElementById("qrdata").appendChild(table);
                 cam.pause();
                 setTimeout(restart, 2000);
                 requestID = null;
@@ -289,16 +332,19 @@ function h(str) {
 function hex(bs) {
     let h = "";
     for (let i = 0; i < bs.length; i++) {
-        if (i != 0) {
-            if (i % 16 == 0) {
-                h += "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp"
-            } else {
-                h += " ";
-            }
-        }
         h += ("0" + bs[i].toString(16)).slice(-2).toUpperCase();
     }
     return h;
+}
+
+function df(date) {
+    let yyyy = date.getFullYear();
+    let mm = (date.getMonth() < 9) ? ("0" + (date.getMonth() + 1)) : ("" + (date.getMonth() + 1));
+    let dd = (date.getDate() < 10) ? ("0" + date.getDate()) : ("" + date.getDate());
+    let HH = (date.getHours() < 10) ? ("0" + date.getHours()) : ("" + date.getHours());
+    let MM = (date.getMinutes() < 10) ? ("0" + date.getMinutes()) : ("" + date.getMinutes());
+    let ss = (date.getSeconds() < 10) ? ("0" + date.getSeconds()) : ("" + date.getSeconds());
+    return ("" + yyyy + "/" + mm + "/" + dd + "&nbsp;" + HH + ":" + MM + ":" + ss);
 }
 
 function restart() {
