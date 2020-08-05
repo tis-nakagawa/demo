@@ -339,11 +339,11 @@ function hex(bs) {
 
 function df(date) {
     let yyyy = date.getFullYear();
-    let mm = (date.getMonth() < 9) ? ("0" + (date.getMonth() + 1)) : ("" + (date.getMonth() + 1));
-    let dd = (date.getDate() < 10) ? ("0" + date.getDate()) : ("" + date.getDate());
-    let HH = (date.getHours() < 10) ? ("0" + date.getHours()) : ("" + date.getHours());
-    let MM = (date.getMinutes() < 10) ? ("0" + date.getMinutes()) : ("" + date.getMinutes());
-    let ss = (date.getSeconds() < 10) ? ("0" + date.getSeconds()) : ("" + date.getSeconds());
+    let mm = ("0" + (date.getMonth() + 1)).slice(-2);
+    let dd = ("0" + date.getDate()).slice(-2);
+    let HH = ("0" + date.getHours()).slice(-2);
+    let MM = ("0" + date.getMinutes()).slice(-2);
+    let ss = ("0" + date.getSeconds()).slice(-2);
     return ("" + yyyy + "/" + mm + "/" + dd + "&nbsp;" + HH + ":" + MM + ":" + ss);
 }
 
