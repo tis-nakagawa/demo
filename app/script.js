@@ -236,8 +236,8 @@ function startQRReader() {
     console.log("start QR Reader");
     if ("mediaDevices" in navigator) {
         if (cam == null) {
-            // cam = document.createElement("video");
-            cam = document.getElementById("cam");
+            cam = document.createElement("video");
+            document.body.append(cam);
         }
         stopQRReader();
         navigator.mediaDevices.getUserMedia({
@@ -261,6 +261,8 @@ function handleSuccess(stream) {
     console.log("handleSuccess", stream);
     cam.srcObject = stream;
     cam.setAttribute("playsinline", true);
+    cam.setAttribute("autoplay", true);
+    cam.setAttribute("muted", true);
     cam.play();
     if (!document.getElementById("qrr").checked) {
         stopQRReader();
