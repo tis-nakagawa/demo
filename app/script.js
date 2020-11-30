@@ -236,7 +236,8 @@ function startQRReader() {
     console.log("start QR Reader");
     if ("mediaDevices" in navigator) {
         if (cam == null) {
-            cam = document.createElement("video");
+            // cam = document.createElement("video");
+            cam = document.getElementById("cam");
         }
         stopQRReader();
         navigator.mediaDevices.getUserMedia({

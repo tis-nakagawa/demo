@@ -171,3 +171,11 @@ td.min {
     white-space: nowrap;
     line-height: 1.25;
 }
+
+video {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+}
